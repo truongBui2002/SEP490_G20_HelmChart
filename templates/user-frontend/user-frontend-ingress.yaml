@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "ingress-{{ .Values.user-frontend.name }}"
+  name: ingress-{{ .Values.user-frontend.name }}
   namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: "service-{{ .Values.user-frontend.name }}"
+                name: service-{{ .Values.user-frontend.name }}
                 port:
                   number: 80
   tls:
