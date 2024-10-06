@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.user-frontend.name }}
+  name: {{ .Values.userFrontend.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.user-frontend.name }}
+    app: {{ .Values.userFrontend.name }}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: {{ .Values.user-frontend.name }}
+      app: {{ .Values.userFrontend.name }}
       tier: user-frontend
   template:
     metadata:
       labels:
-        app: {{ .Values.user-frontend.name }}
+        app: {{ .Values.userFrontend.name }}
         tier: user-frontend
     spec:
       containers:
       - name: user-frontend-container
-        image: "{{ .Values.docker-registry.name }}/{{ .Values.user-frontend.image.name }}:{{ .Values.user-frontend.image.tag }}"
+        image: "{{ .Values.docker-registry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.userFrontend.image.tag }}"
         ports:
         - containerPort: 80
       imagePullSecrets:

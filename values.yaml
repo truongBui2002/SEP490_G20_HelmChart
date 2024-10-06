@@ -2,7 +2,7 @@ appName: icodervn
 
 namespace: apps
 
-user-frontend:
+userFrontend:
   name: user-frontend
   image: 
     name: k8s/user-frontend
