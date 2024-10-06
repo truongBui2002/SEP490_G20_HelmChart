@@ -1,0 +1,15 @@
+appName: icodervn
+
+namespace: apps
+
+user-frontend:
+  name: user-frontend
+  image: 
+    name: k8s/user-frontend
+    tag: v1.0.0
+
+imagePullSecrets:
+  name: harbor-secret
+docker-registry:
+  name: hub.icoder.vn
+
