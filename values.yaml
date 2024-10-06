@@ -10,6 +10,6 @@ userFrontend:
 
 imagePullSecrets:
   name: harbor-secret
-docker-registry:
+dockerRegistry:
   name: hub.icoder.vn
 
