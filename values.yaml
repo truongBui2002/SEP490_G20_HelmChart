@@ -13,4 +13,4 @@ imagePullSecrets:
 dockerRegistry:
   name: hub.icoder.vn
 
-tag: v1.20
+tag: v1.21
