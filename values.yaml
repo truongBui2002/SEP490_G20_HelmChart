@@ -6,10 +6,11 @@ userFrontend:
   name: user-frontend
   image: 
     name: k8s/user-frontend
-    tag: v1.0.0
+    
 
 imagePullSecrets:
   name: harbor-secret
 dockerRegistry:
   name: hub.icoder.vn
 
+tag: v1.0.0

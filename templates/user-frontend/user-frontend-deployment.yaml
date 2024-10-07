@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: user-frontend-container
-        image: {{ .Values.dockerRegistry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.userFrontend.image.tag }}
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.tag }}
         ports:
         - containerPort: 80
       imagePullSecrets:
