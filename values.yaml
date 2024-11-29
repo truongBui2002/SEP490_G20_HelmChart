@@ -1,5 +1,5 @@
 appName: icodervn
-tag: 1.50
+tag: v1.50
 
 #registry
 imagePullSecrets:
