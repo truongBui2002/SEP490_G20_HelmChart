@@ -27,6 +27,8 @@ authServer:
   image:
     name: k8s/auth-server
   env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: ConnectionStrings__DefaultConnection
       value: "Host=identitydb-postgresql;Port=5432;Database=identitydb;Username=postgres;Password=nfs59dEZ8S"
     - name: Authentication__Google__ClientId
@@ -66,6 +68,8 @@ apiGateway:
   image:
     name: k8s/api-gateway
   env:
+  - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: Cors__User
       value: "icoder.vn"
     - name: Cors__Admin
@@ -87,6 +91,8 @@ aiService:
   image:
     name: k8s/ai-service
   env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: ConnectionStrings__DefaultConnection
       value: "Host=aidb-postgresql;Port=5432;Database=aidb;Username=postgres;Password=LL5c5oc70e"
     - name: ConnectionStrings__Redis
@@ -164,6 +170,8 @@ communityService:
   image:
     name: k8s/community-service
   env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: MessageBroker__Host
       value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
     - name: MessageBroker__UserName
@@ -202,6 +210,8 @@ learningService:
   image:
     name: k8s/learning-service
   env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: ConnectionStrings__DefaultConnection
       value: "Host=learningdb-postgresql;Port=5432;Database=learningdb;Username=postgres;Password=HDEXXlCvY7"
     - name: ConnectionStrings__Redis
@@ -253,6 +263,8 @@ userService:
   image:
     name: k8s/user-service
   env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
     - name: ConnectionStrings__DefaultConnection
       value: "Host=userdb-postgresql;Port=5432;Database=userdb;Username=postgres;Password=pVw5ParNpf"
     - name: ConnectionStrings__Redis
