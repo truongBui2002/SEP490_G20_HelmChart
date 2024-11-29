@@ -4,12 +4,11 @@ metadata:
   name: {{ .Values.authServer.name }}
   namespace: {{ .Values.namespace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: http-01-production
 spec:
   ingressClassName: nginx
   rules:
-    - host: account.icoder.vn
+    - host: accounts.icoder.vn
       http:
         paths:
           - path: /
@@ -21,5 +20,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - account.icoder.vn
-      secretName: account-icoder-vn
+        - accounts.icoder.vn
+      secretName: accounts-icoder-vn

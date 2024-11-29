@@ -22,10 +22,5 @@ spec:
         image: {{ .Values.dockerRegistry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.tag }}
         ports:
         - containerPort: 80
-        env:
-        {{- range .Values.userFrontend.env }}
-        - name: {{ .name }}
-          value: {{ .value | quote }}
-        {{- end }}
       imagePullSecrets:
       - name: {{ .Values.imagePullSecrets.name }}

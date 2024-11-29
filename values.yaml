@@ -14,26 +14,12 @@ userFrontend:
   name: user-frontend
   image:
     name: k8s/user-frontend
-  env:
-    - name: VITE_API_URL
-      value: "https://api.icoder.vn"
-    - name: VITE_SIGNALR_URL
-      value: "https://api.icoder.vn/ai-service/ai-chat"
-    - name: VITE_AUTH_URL
-      value: "https://account.icoder.vn"
 
 # admin-frontend
 adminFrontend:
   name: admin-frontend
   image:
     name: k8s/admin-frontend
-  env:
-    - name: VITE_BASE_URL
-      value: "https://api.icoder.vn"
-    - name: VITE_BASE_URL_AUTH
-      value: "https://account.icoder.vn"
-    - name: VITE_APP_TITLE
-      value: "ICODER"
 
 #auth-server
 authServer:
@@ -48,11 +34,11 @@ authServer:
     - name: Authentication__Google__ClientSecret
       value: "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"
     - name: Jwt__Authority
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -70,9 +56,9 @@ authServer:
         - "https://icoder.vn"
         - "https://admin.icoder.vn"
     - name: ApiSettings__UserImageUrl
-      value: "https://account.icoder.vn/users/{0}/image"
+      value: "https://accounts.icoder.vn/users/{0}/image"
     - name: ApiSettings__UserUpdateImageUrl
-      value: "https://account.icoder.vn/users/updateimage"
+      value: "https://accounts.icoder.vn/users/updateimage"
 
 #api-gateway
 apiGateway:
@@ -85,15 +71,15 @@ apiGateway:
     - name: Cors__Admin
       value: "admin.icoder.vn"
     - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
-      value: "http://service-learning-service"
+      value: "http://service-learning-service:80"
     - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
-      value: "http://service-user-service"
+      value: "http://service-user-service:80"
     - name: ReverseProxy__Clusters__ai-cluster__Destinations__destination1__Address
-      value: "http://service-ai-service"
+      value: "http://service-ai-service:80"
     - name: ReverseProxy__Clusters__community-cluster__Destinations__destination1__Address
-      value: "http://service-community-service"
+      value: "http://service-community-service:80"
     - name: ReverseProxy__Clusters__payment-cluster__Destinations__destination1__Address
-      value: "http://service-payment-service"
+      value: "http://service-payment-service:80"
 
 #ai-service
 aiService:
@@ -106,11 +92,11 @@ aiService:
     - name: ConnectionStrings__Redis
       value: "redis-master:6379,password=icodervn"
     - name: Jwt__Authority
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AzureOpenAI__ChatApiKey
@@ -191,11 +177,11 @@ communityService:
     - name: ElasticConfiguration__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -237,11 +223,11 @@ learningService:
     - name: MessageBroker__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -278,11 +264,11 @@ userService:
     - name: MessageBroker__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "account.icoder.vn"
+      value: "accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: ElasticConfiguration__Uri
