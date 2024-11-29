@@ -1,5 +1,5 @@
 appName: icodervn
-tag: v1.50
+tag: v1.51
 
 #registry
 imagePullSecrets:
@@ -30,6 +30,8 @@ adminFrontend:
   env:
     - name: VITE_BASE_URL
       value: "https://api.icoder.vn"
+    - name: VITE_BASE_URL_AUTH
+      value: "https://account.icoder.vn"
     - name: VITE_APP_TITLE
       value: "ICODER"
 

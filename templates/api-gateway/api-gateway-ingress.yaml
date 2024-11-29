@@ -4,7 +4,6 @@ metadata:
   name: {{ .Values.apiGateway.name }}
   namespace: {{ .Values.namespace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: http-01-production
 spec:
   ingressClassName: nginx
