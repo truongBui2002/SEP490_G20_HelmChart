@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.userFrontend.name }}
+  name: {{ .Values.apiGateway.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.userFrontend.name }}
+    app: {{ .Values.apiGateway.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.userFrontend.name }}
-      tier: user-frontend
+      app: {{ .Values.apiGateway.name }}
+      tier: api-gateway
   template:
     metadata:
       labels:
-        app: {{ .Values.userFrontend.name }}
-        tier: user-frontend
+        app: {{ .Values.apiGateway.name }}
+        tier: api-gateway
     spec:
       containers:
-      - name: user-frontend-container
-        image: {{ .Values.dockerRegistry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.tag }}
+      - name: api-gateway-container
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.apiGateway.image.name }}:{{ .Values.tag }}
         ports:
         - containerPort: 80
         env:
-        {{- range .Values.userFrontend.env }}
+        {{- range .Values.apiGateway.env }}
         - name: {{ .name }}
           value: {{ .value | quote }}
         {{- end }}

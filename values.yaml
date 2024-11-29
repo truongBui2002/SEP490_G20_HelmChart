@@ -1,16 +1,297 @@
 appName: icodervn
+tag: v1.50
 
-namespace: apps
-
-userFrontend:
-  name: user-frontend
-  image: 
-    name: k8s/user-frontend
-    
-
+#registry
 imagePullSecrets:
   name: harbor-secret
 dockerRegistry:
   name: hub.icoder.vn
 
-tag: v1.49
+# user-frontend
+namespace: apps
+
+userFrontend:
+  name: user-frontend
+  image:
+    name: k8s/user-frontend
+  env:
+    - name: VITE_API_URL
+      value: "https://api.icoder.vn"
+    - name: VITE_SIGNALR_URL
+      value: "https://api.icoder.vn/ai-service/ai-chat"
+    - name: VITE_AUTH_URL
+      value: "https://account.icoder.vn"
+
+# admin-frontend
+adminFrontend:
+  name: admin-frontend
+  image:
+    name: k8s/admin-frontend
+  env:
+    - name: VITE_BASE_URL
+      value: "https://api.icoder.vn"
+    - name: VITE_APP_TITLE
+      value: "ICODER"
+
+#auth-server
+authServer:
+  name: auth-server
+  image:
+    name: k8s/auth-server
+  env:
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=identitydb-postgresql;Port=5432;Database=identitydb;Username=postgres;Password=nfs59dEZ8S"
+    - name: Authentication__Google__ClientId
+      value: "1041828910361-i7nl98e2cddj7onoe95dbahf0e5ce6oc.apps.googleusercontent.com"
+    - name: Authentication__Google__ClientSecret
+      value: "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"
+    - name: Jwt__Authority
+      value: "account.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "account.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: AWS__AccessKey
+      value: "77f7c0e5bef033d09861960abdf31102"
+    - name: AWS__SecretKey
+      value: "a0c7928a7b8ffeed218e45c5c578f3d2"
+    - name: AWS__Url
+      value: "https://sin1.contabostorage.com"
+    - name: TokenCleanupOptions__EnableTokenCleanup
+      value: "true"
+    - name: TokenCleanupOptions__TokenCleanupInterval
+      value: "3600"
+    - name: CorsSettings__AllowedOrigins
+      value: |
+        - "https://icoder.vn"
+        - "https://admin.icoder.vn"
+    - name: ApiSettings__UserImageUrl
+      value: "https://account.icoder.vn/users/{0}/image"
+    - name: ApiSettings__UserUpdateImageUrl
+      value: "https://account.icoder.vn/users/updateimage"
+
+#api-gateway
+apiGateway:
+  name: api-gateway
+  image:
+    name: k8s/api-gateway
+  env:
+    - name: Cors__User
+         value: "icoder.vn"
+       - name: Cors__Admin
+         value: "admin.icoder.vn"
+       - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
+         value: "http://service-learning-service"
+       - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
+         value: "http://service-user-service"
+       - name: ReverseProxy__Clusters__ai-cluster__Destinations__destination1__Address
+         value: "http://service-ai-service"
+       - name: ReverseProxy__Clusters__community-cluster__Destinations__destination1__Address
+         value: "http://service-community-service"
+       - name: ReverseProxy__Clusters__payment-cluster__Destinations__destination1__Address
+         value: "http://service-payment-service"
+
+#ai-service
+aiService:
+  name: ai-service
+  image:
+    name: k8s/ai-service
+  env:
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=aidb-postgresql;Port=5432;Database=aidb;Username=postgres;Password=LL5c5oc70e"
+    - name: ConnectionStrings__Redis
+      value: "redis-master:6379,password=icodervn"
+    - name: Jwt__Authority
+      value: "account.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "account.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: AzureOpenAI__ChatApiKey
+      value: "5f9a66305f3f4e2e8045b86660288da5"
+    - name: AzureOpenAI__EmbeddingApiKey
+      value: "5f9a66305f3f4e2e8045b86660288da5"
+    - name: AzureOpenAI__DeploymentChatName
+      value: "gpt-4o"
+    - name: AzureOpenAI__MaxTokenTotalChat
+      value: "30000"
+    - name: AzureOpenAI__DeploymentEmbeddingName
+      value: "text-embedding-3-large"
+    - name: AzureOpenAI__MaxTokenTotalEmbedding
+      value: "350000"
+    - name: AzureOpenAI__EmbeddingDimensions
+      value: "3072"
+    - name: AzureOpenAI__ChatEndpoint
+      value: "https://buiva-m2rvzr2e-japaneast.openai.azure.com/"
+    - name: AzureOpenAI__EmbeddingEndpoint
+      value: "https://buiva-m2rvzr2e-japaneast.openai.azure.com/"
+    - name: Qdrant__Endpoint
+      value: "https://qdrant.icoder.vn/"
+    - name: Qdrant__ApiKey
+      value: "f1a7b256-707e-4260-a174-0d4d304bef86"
+    - name: ElasticConfiguration__Uri
+      value: "https://elasticsearch-master:9200"
+    - name: ElasticConfiguration__Username
+      value: "elastic"
+    - name: ElasticConfiguration__Password
+      value: "icodervn"
+    - name: AWS__AccessKey
+      value: "77f7c0e5bef033d09861960abdf31102"
+    - name: AWS__SecretKey
+      value: "a0c7928a7b8ffeed218e45c5c578f3d2"
+    - name: AWS__Url
+      value: "https://sin1.contabostorage.com"
+    - name: AWS__Bucket
+      value: "rag-document"
+    - name: MessageBroker__Host
+      value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
+    - name: MessageBroker__UserName
+      value: "icodervn"
+    - name: MessageBroker__Password
+      value: "icodervn"
+    - name: SearchClient__MaxMatchesCount
+      value: "30"
+    - name: SearchClient__AnswerTokens
+      value: "2000"
+    - name: SearchClient__MinRelevance
+      value: "0.4"
+    - name: SearchClient__Temperature
+      value: "1"
+    - name: SearchClient__TopP
+      value: "1"
+    - name: SearchClient__PresencePenalty
+      value: "0"
+    - name: SearchClient__FrequencyPenalty
+      value: "0"
+    - name: Parameters__PastMessages
+      value: "15"
+
+#community-service
+communityService:
+  name: community-service
+  image:
+    name: k8s/community-service
+  env:
+    - name: MessageBroker__Host
+      value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
+    - name: MessageBroker__UserName
+      value: "icodervn"
+    - name: MessageBroker__Password
+      value: "icodervn"
+    - name: ElasticConfiguration__Uri
+      value: "https://elasticsearch-master:9200"
+    - name: ElasticConfiguration__Username
+      value: "elastic"
+    - name: ElasticConfiguration__Password
+      value: "icodervn"
+    - name: Jwt__Authority
+      value: "account.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "account.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: AWS__AccessKey
+      value: "77f7c0e5bef033d09861960abdf31102"
+    - name: AWS__SecretKey
+      value: "a0c7928a7b8ffeed218e45c5c578f3d2"
+    - name: AWS__Url
+      value: "https://sin1.contabostorage.com"
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=communitydb-postgresql;Port=5432;Database=communitydb;Username=postgres;Password=5tzZIvuPmC"
+    - name: ConnectionStrings__Redis
+      value: "redis-master:6379,password=icodervn"
+
+
+#learning-service
+learningService:
+  name: learning-service
+  image:
+    name: k8s/learning-service
+  env:
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=learningdb-postgresql;Port=5432;Database=learningdb;Username=postgres;Password=HDEXXlCvY7"
+    - name: ConnectionStrings__Redis
+      value: "redis-master:6379,password=icodervn"
+    - name: Judje0__BaseUrl
+      value: "https://codesandbox.icoder.vn"
+    - name: Judje0__AuthorizationHeader
+      value: "X-Auth-Token"
+    - name: Judje0__AuthorizationToken
+      value: "1ff62e1d-2fa4-43d2-8cb5-a84afb2dac6b"
+    - name: Judje0__AuthenticationHeader
+      value: "X-Auth-User"
+    - name: Judje0__AuthenticationToken
+      value: "065ed8db-dc10-4152-9856-12cff672fdee"
+    - name: MessageBroker__Host
+      value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
+    - name: MessageBroker__UserName
+      value: "icodervn"
+    - name: MessageBroker__Password
+      value: "icodervn"
+    - name: Jwt__Authority
+      value: "account.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "account.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: AWS__AccessKey
+      value: "77f7c0e5bef033d09861960abdf31102"
+    - name: AWS__SecretKey
+      value: "a0c7928a7b8ffeed218e45c5c578f3d2"
+    - name: AWS__Url
+      value: "https://sin1.contabostorage.com"
+    - name: ElasticConfiguration__Uri
+      value: "https://elasticsearch-master:9200"
+    - name: ElasticConfiguration__Username
+      value: "elastic"
+    - name: ElasticConfiguration__Password
+      value: "icodervn"
+    - name: Hangfire__Username
+      value: "icodervn"
+    - name: Hangfire__Password
+      value: "icodervn"
+
+#user-service
+userService:
+  name: user-service
+  image:
+    name: k8s/user-service
+  env:
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=userdb-postgresql;Port=5432;Database=userdb;Username=postgres;Password=pVw5ParNpf"
+    - name: ConnectionStrings__Redis
+      value: "redis-master:6379,password=icodervn"
+    - name: MessageBroker__Host
+      value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
+    - name: MessageBroker__UserName
+      value: "icodervn"
+    - name: MessageBroker__Password
+      value: "icodervn"
+    - name: Jwt__Authority
+      value: "account.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "account.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: ElasticConfiguration__Uri
+      value: "https://elasticsearch-master:9200"
+    - name: ElasticConfiguration__Username
+      value: "elastic"
+    - name: ElasticConfiguration__Password
+      value: "icodervn"
+    - name: AWS__AccessKey
+      value: "77f7c0e5bef033d09861960abdf31102"
+    - name: AWS__SecretKey
+      value: "a0c7928a7b8ffeed218e45c5c578f3d2"
+    - name: AWS__Url
+      value: "https://sin1.contabostorage.com"

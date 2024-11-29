@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.apiGateway.name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: http-01-production
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.icoder.vn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-{{ .Values.apiGateway.name }}
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - api.icoder.vn
+      secretName: api-icoder-vn

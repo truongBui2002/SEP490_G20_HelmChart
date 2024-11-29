@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.communityService.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.communityService.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.communityService.name }}
+      tier: api-community-service
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.communityService.name }}
+        tier: api-community-service
+    spec:
+      containers:
+      - name: api-community-service-container
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.communityService.image.name }}:{{ .Values.tag }}
+        ports:
+        - containerPort: 80
+        env:
+        {{- range .Values.communityService.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets.name }}

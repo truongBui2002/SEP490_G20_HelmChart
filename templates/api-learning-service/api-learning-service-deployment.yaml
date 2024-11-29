@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.learningService.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.learningService.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.learningService.name }}
+      tier: api-learning-service
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.learningService.name }}
+        tier: api-learning-service
+    spec:
+      containers:
+      - name: api-learning-service-container
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.learningService.image.name }}:{{ .Values.tag }}
+        ports:
+        - containerPort: 80
+        env:
+        {{- range .Values.learningService.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets.name }}

@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.userFrontend.name }}
+  name: {{ .Values.authServer.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.userFrontend.name }}
+    app: {{ .Values.authServer.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.userFrontend.name }}
-      tier: user-frontend
+      app: {{ .Values.authServer.name }}
+      tier: auth-server
   template:
     metadata:
       labels:
-        app: {{ .Values.userFrontend.name }}
-        tier: user-frontend
+        app: {{ .Values.authServer.name }}
+        tier: auth-server
     spec:
       containers:
-      - name: user-frontend-container
-        image: {{ .Values.dockerRegistry.name }}/{{ .Values.userFrontend.image.name }}:{{ .Values.tag }}
+      - name: auth-server-container
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.authServer.image.name }}:{{ .Values.tag }}
         ports:
         - containerPort: 80
         env:
-        {{- range .Values.userFrontend.env }}
+        {{- range .Values.authServer.env }}
         - name: {{ .name }}
           value: {{ .value | quote }}
         {{- end }}
