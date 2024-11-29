@@ -79,19 +79,19 @@ apiGateway:
     name: k8s/api-gateway
   env:
     - name: Cors__User
-         value: "icoder.vn"
-       - name: Cors__Admin
-         value: "admin.icoder.vn"
-       - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
-         value: "http://service-learning-service"
-       - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
-         value: "http://service-user-service"
-       - name: ReverseProxy__Clusters__ai-cluster__Destinations__destination1__Address
-         value: "http://service-ai-service"
-       - name: ReverseProxy__Clusters__community-cluster__Destinations__destination1__Address
-         value: "http://service-community-service"
-       - name: ReverseProxy__Clusters__payment-cluster__Destinations__destination1__Address
-         value: "http://service-payment-service"
+      value: "icoder.vn"
+    - name: Cors__Admin
+      value: "admin.icoder.vn"
+    - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
+      value: "http://service-learning-service"
+    - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
+      value: "http://service-user-service"
+    - name: ReverseProxy__Clusters__ai-cluster__Destinations__destination1__Address
+      value: "http://service-ai-service"
+    - name: ReverseProxy__Clusters__community-cluster__Destinations__destination1__Address
+      value: "http://service-community-service"
+    - name: ReverseProxy__Clusters__payment-cluster__Destinations__destination1__Address
+      value: "http://service-payment-service"
 
 #ai-service
 aiService:
