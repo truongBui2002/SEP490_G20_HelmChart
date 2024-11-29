@@ -68,7 +68,7 @@ apiGateway:
   image:
     name: k8s/api-gateway
   env:
-  - name: ASPNETCORE_ENVIRONMENT
+    - name: ASPNETCORE_ENVIRONMENT
       value: "Production"
     - name: Cors__User
       value: "icoder.vn"
