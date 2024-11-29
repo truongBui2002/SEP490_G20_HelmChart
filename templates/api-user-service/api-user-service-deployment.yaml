@@ -21,10 +21,10 @@ spec:
       - name: api-user-service-container
         image: {{ .Values.dockerRegistry.name }}/{{ .Values.userService.image.name }}:{{ .Values.tag }}
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         {{- range .Values.userService.env }}
-        - name: {{ .name }}
+        - name: {{ .name }}S
           value: {{ .value | quote }}
         {{- end }}
       imagePullSecrets:

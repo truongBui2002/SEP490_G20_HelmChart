@@ -71,15 +71,15 @@ apiGateway:
     - name: Cors__Admin
       value: "admin.icoder.vn"
     - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
-      value: "http://service-learning-service:80"
+      value: "http://service-learning-service:8080"
     - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
-      value: "http://service-user-service:80"
+      value: "http://service-user-service:8080"
     - name: ReverseProxy__Clusters__ai-cluster__Destinations__destination1__Address
-      value: "http://service-ai-service:80"
+      value: "http://service-ai-service:8080"
     - name: ReverseProxy__Clusters__community-cluster__Destinations__destination1__Address
-      value: "http://service-community-service:80"
+      value: "http://service-community-service:8080"
     - name: ReverseProxy__Clusters__payment-cluster__Destinations__destination1__Address
-      value: "http://service-payment-service:80"
+      value: "http://service-payment-service:8080"
 
 #ai-service
 aiService:

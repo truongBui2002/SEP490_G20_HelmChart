@@ -21,7 +21,7 @@ spec:
       - name: api-ai-service-container
         image: {{ .Values.dockerRegistry.name }}/{{ .Values.aiService.image.name }}:{{ .Values.tag }}
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         {{- range .Values.aiService.env }}
         - name: {{ .name }}

@@ -17,7 +17,7 @@ spec:
               service:
                 name: service-{{ .Values.apiGateway.name }}
                 port:
-                  number: 80
+                  number: 8080
   tls:
     - hosts:
         - api.icoder.vn

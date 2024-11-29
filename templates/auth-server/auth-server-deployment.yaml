@@ -21,7 +21,7 @@ spec:
       - name: auth-server-container
         image: {{ .Values.dockerRegistry.name }}/{{ .Values.authServer.image.name }}:{{ .Values.tag }}
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         {{- range .Values.authServer.env }}
         - name: {{ .name }}

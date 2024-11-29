@@ -21,7 +21,7 @@ spec:
       - name: api-learning-service-container
         image: {{ .Values.dockerRegistry.name }}/{{ .Values.learningService.image.name }}:{{ .Values.tag }}
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         {{- range .Values.learningService.env }}
         - name: {{ .name }}
