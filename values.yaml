@@ -36,11 +36,11 @@ authServer:
     - name: Authentication__Google__ClientSecret
       value: "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"
     - name: Jwt__Authority
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -54,9 +54,7 @@ authServer:
     - name: TokenCleanupOptions__TokenCleanupInterval
       value: "3600"
     - name: CorsSettings__AllowedOrigins
-      value: |
-        - "https://icoder.vn"
-        - "https://admin.icoder.vn"
+      value: "https://icoder.vn,https://admin.icoder.vn"
     - name: ApiSettings__UserImageUrl
       value: "https://accounts.icoder.vn/users/{0}/image"
     - name: ApiSettings__UserUpdateImageUrl
@@ -98,11 +96,11 @@ aiService:
     - name: ConnectionStrings__Redis
       value: "redis-master:6379,password=icodervn"
     - name: Jwt__Authority
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AzureOpenAI__ChatApiKey
@@ -185,11 +183,11 @@ communityService:
     - name: ElasticConfiguration__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -233,11 +231,11 @@ learningService:
     - name: MessageBroker__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: AWS__AccessKey
@@ -276,11 +274,11 @@ userService:
     - name: MessageBroker__Password
       value: "icodervn"
     - name: Jwt__Authority
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
       value: "false"
     - name: Jwt__Issuer
-      value: "accounts.icoder.vn"
+      value: "https://accounts.icoder.vn"
     - name: Jwt__Audience
       value: "ICoderVN"
     - name: ElasticConfiguration__Uri
