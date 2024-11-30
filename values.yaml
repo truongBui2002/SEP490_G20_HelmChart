@@ -71,9 +71,9 @@ apiGateway:
     - name: ASPNETCORE_ENVIRONMENT
       value: "Production"
     - name: Cors__User
-      value: "icoder.vn"
+      value: "https://icoder.vn"
     - name: Cors__Admin
-      value: "admin.icoder.vn"
+      value: "https://admin.icoder.vn"
     - name: ReverseProxy__Clusters__learning-cluster__Destinations__destination1__Address
       value: "http://service-learning-service:8080"
     - name: ReverseProxy__Clusters__user-cluster__Destinations__destination1__Address
