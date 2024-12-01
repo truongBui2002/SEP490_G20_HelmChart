@@ -53,8 +53,10 @@ authServer:
       value: "true"
     - name: TokenCleanupOptions__TokenCleanupInterval
       value: "3600"
-    - name: CorsSettings__AllowedOrigins
-      value: "https://icoder.vn,https://admin.icoder.vn"
+    - name: CorsSettings__AllowedOrigins__0
+      value: "https://icoder.vn"
+    - name: CorsSettings__AllowedOrigins__1
+      value: "https://admin.icoder.vn"
     - name: ApiSettings__UserImageUrl
       value: "https://accounts.icoder.vn/users/{0}/image"
     - name: ApiSettings__UserUpdateImageUrl
