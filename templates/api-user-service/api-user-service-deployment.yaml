@@ -24,7 +24,7 @@ spec:
         - containerPort: 8080
         env:
         {{- range .Values.userService.env }}
-        - name: {{ .name }}S
+        - name: {{ .name }}
           value: {{ .value | quote }}
         {{- end }}
       imagePullSecrets:
