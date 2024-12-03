@@ -4,6 +4,7 @@ metadata:
   name: {{ .Values.apiGateway.name }}
   namespace: {{ .Values.namespace }}
   annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "5G"
     cert-manager.io/cluster-issuer: http-01-production
 spec:
   ingressClassName: nginx
