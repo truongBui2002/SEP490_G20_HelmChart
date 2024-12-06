@@ -329,7 +329,7 @@ paymentService:
     - name: ElasticConfiguration__Password
       value: "icodervn"
     - name: PayPal__Environment
-      value: "Sandbox" # Live
+      value: "Sanbox" # Live
     - name: PayPal__BaseUrl
       value: "https://api-m.sandbox.paypal.com"
     - name: PayPal__WebhookId
