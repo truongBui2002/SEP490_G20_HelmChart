@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.paymentService.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.paymentService.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.paymentService.name }}
+      tier: api-payment-service
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.paymentService.name }}
+        tier: api-payment-service
+    spec:
+      containers:
+      - name: api-payment-service-container
+        image: {{ .Values.dockerRegistry.name }}/{{ .Values.paymentService.image.name }}:{{ .Values.tag }}
+        ports:
+        - containerPort: 8080
+        env:
+        {{- range .Values.paymentService.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets.name }}

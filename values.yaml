@@ -1,5 +1,5 @@
 appName: icodervn
-tag: v1.61
+tag: v1.62
 
 #registry
 imagePullSecrets:
@@ -295,3 +295,46 @@ userService:
       value: "a0c7928a7b8ffeed218e45c5c578f3d2"
     - name: AWS__Url
       value: "https://sin1.contabostorage.com"
+
+# SetupKubenetes/HelmFile-SEP490_G20/SEP490_G20_HelmChart/values.yaml
+paymentService:
+  name: payment-service
+  image:
+    name: k8s/payment-service
+  env:
+    - name: ASPNETCORE_ENVIRONMENT
+      value: "Production"
+    - name: ConnectionStrings__DefaultConnection
+      value: "Host=paymentdb-postgresql;Port=5432;Database=paymentdb;Username=postgres;Password=aThYvGdv5k"
+    - name: ConnectionStrings__Redis
+      value: "redis-master:6379,password=icodervn"
+    - name: MessageBroker__Host
+      value: "amqp://rabbitmq-single-node-rabbitmq-service:5672"
+    - name: MessageBroker__UserName
+      value: "icodervn"
+    - name: MessageBroker__Password
+      value: "icodervn"
+    - name: Jwt__Authority
+      value: "https://accounts.icoder.vn"
+    - name: Jwt__RequireHttpsMetadata
+      value: "false"
+    - name: Jwt__Issuer
+      value: "https://accounts.icoder.vn"
+    - name: Jwt__Audience
+      value: "ICoderVN"
+    - name: ElasticConfiguration__Uri
+      value: "https://elasticsearch-master:9200"
+    - name: ElasticConfiguration__Username
+      value: "elastic"
+    - name: ElasticConfiguration__Password
+      value: "icodervn"
+    - name: PayPal__Environment
+      value: "Sandbox" # Live
+    - name: PayPal__BaseUrl
+      value: "https://api-m.sandbox.paypal.com"
+    - name: PayPal__WebhookId
+      value: "67690510EN785763G"
+    - name: PayPal__ClientId
+      value: "ATncYgnc0VHRxHwgBByz3OLk3Nuw4SG4KXA3sLJZkwmYVxTxXFoxlEBt-UoBmZ-U0xKTY0dBZ18li-GA"
+    - name: PayPal__ClientSecret
+      value: "EDnksu5MUVQNRxM2_PiLT5XAzed6ngmFmrZ4qjYjELY74DMBHWprLBHjIZ3JIkcZ8xVVG4MVs2RXZqQ5"
