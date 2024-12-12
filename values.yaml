@@ -1,5 +1,5 @@
 appName: icodervn
-tag: v1.62
+tag: v1.63
 
 #registry
 imagePullSecrets:
@@ -32,9 +32,9 @@ authServer:
     - name: ConnectionStrings__DefaultConnection
       value: "Host=identitydb-postgresql;Port=5432;Database=identitydb;Username=postgres;Password=nfs59dEZ8S"
     - name: Authentication__Google__ClientId
-      value: "1041828910361-i7nl98e2cddj7onoe95dbahf0e5ce6oc.apps.googleusercontent.com"
+      value: "776466389576-0bd9r31kgjtqacog7vn8fp5gghrl14oo.apps.googleusercontent.com"
     - name: Authentication__Google__ClientSecret
-      value: "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"
+      value: "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"
     - name: Jwt__Authority
       value: "https://accounts.icoder.vn"
     - name: Jwt__RequireHttpsMetadata
@@ -202,7 +202,8 @@ communityService:
       value: "Host=communitydb-postgresql;Port=5432;Database=communitydb;Username=postgres;Password=5tzZIvuPmC"
     - name: ConnectionStrings__Redis
       value: "redis-master:6379,password=icodervn"
-
+    - name: SendMailExtensions__urlCallBackFlag
+      value: "https://icoder.vn/"
 
 #learning-service
 learningService:
@@ -296,7 +297,7 @@ userService:
     - name: AWS__Url
       value: "https://sin1.contabostorage.com"
 
-# SetupKubenetes/HelmFile-SEP490_G20/SEP490_G20_HelmChart/values.yaml
+#payment-service
 paymentService:
   name: payment-service
   image:
@@ -329,7 +330,7 @@ paymentService:
     - name: ElasticConfiguration__Password
       value: "icodervn"
     - name: PayPal__Environment
-      value: "Sanbox" # Live
+      value: "Sandbox" # Live
     - name: PayPal__BaseUrl
       value: "https://api-m.sandbox.paypal.com"
     - name: PayPal__WebhookId
@@ -338,3 +339,5 @@ paymentService:
       value: "ATncYgnc0VHRxHwgBByz3OLk3Nuw4SG4KXA3sLJZkwmYVxTxXFoxlEBt-UoBmZ-U0xKTY0dBZ18li-GA"
     - name: PayPal__ClientSecret
       value: "EDnksu5MUVQNRxM2_PiLT5XAzed6ngmFmrZ4qjYjELY74DMBHWprLBHjIZ3JIkcZ8xVVG4MVs2RXZqQ5"
+    - name: WebUrl
+      value: "https://icoder.vn"
