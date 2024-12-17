@@ -1,5 +1,5 @@
 appName: icodervn
-tag: v1.73
+tag: v1.74
 
 #registry
 imagePullSecrets:
@@ -330,14 +330,14 @@ paymentService:
     - name: ElasticConfiguration__Password
       value: "icodervn"
     - name: PayPal__Environment
-      value: "Live"
+      value: "Sandbox"
     - name: PayPal__BaseUrl
-      value: "https://api-m.paypal.com"
+      value: "https://api-m.sandbox.paypal.com"
     - name: PayPal__WebhookId
       value: "1PB40287T1511231K"
     - name: PayPal__ClientId
-      value: "ASgoTPuECgWBUSxj0r5V4SCBNccarziG7-6tTSKAAsFdSjhTaGpdNMXq1tdopnpZ8A8Y-LgMl7Q23Suz"
+      value: "ATncYgnc0VHRxHwgBByz3OLk3Nuw4SG4KXA3sLJZkwmYVxTxXFoxlEBt-UoBmZ-U0xKTY0dBZ18li-GA"
     - name: PayPal__ClientSecret
-      value: "EHUyW7-ptLwB-bY4jYswZvgLq0B1vQrQZhloRsobWPN64yAPQPQjB9I9xYEwTfHrYJLjd7VFSYtWC_qw"
+      value: "EDnksu5MUVQNRxM2_PiLT5XAzed6ngmFmrZ4qjYjELY74DMBHWprLBHjIZ3JIkcZ8xVVG4MVs2RXZqQ5"
     - name: WebUrl
       value: "https://icoder.vn"
