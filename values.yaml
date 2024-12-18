@@ -334,7 +334,7 @@ paymentService:
     - name: PayPal__BaseUrl
       value: "https://api-m.sandbox.paypal.com"
     - name: PayPal__WebhookId
-      value: "1PB40287T1511231K"
+      value: "67690510EN785763G"
     - name: PayPal__ClientId
       value: "ATncYgnc0VHRxHwgBByz3OLk3Nuw4SG4KXA3sLJZkwmYVxTxXFoxlEBt-UoBmZ-U0xKTY0dBZ18li-GA"
     - name: PayPal__ClientSecret
